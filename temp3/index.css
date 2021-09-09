@@ -1,0 +1,66 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.input-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 20px;
+  z-index: 100;
+  border-bottom: 1px solid lightgray;
+  background-color: #FFF;
+}
+.input-container input {
+  height: 30px;
+  width: 100%;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+.input-container > .board-container {
+  position: relative;
+}
+.input-container > .board-container > .input-board {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  user-select: none;
+}
+
+.goodsesContainer {
+  padding-top: 51px;
+  width: 100%;
+}
+.goodsItem {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.goodsItem > .desc {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 10px 0;
+}
+.goodsItem > .time {
+  font-size: 12px;
+  color: #999;
+}
+
+.goodsBoard {
+  position: absolute;
+  top: 51px;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(200, 200, 200, 0.2);
+}

@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+#app {
+  height: 100vh;
+}
+
+.input-container {
+  padding: 10px 20px;
+  border-bottom: 1px solid lightgray;
+}
+.input-container > input {
+  height: 30px;
+  width: 100%;
+  outline: none;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.goodsesContainer {
+  height: calc(100vh - 51px);
+  width: 100%;
+  overflow: auto;
+}
+.goodsItem {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.goodsItem > .desc {
+  font-size: 12px;
+  color: #666;
+  margin: 4px 0 10px 0;
+}
+.goodsItem > .time {
+  font-size: 12px;
+  color: #999;
+}

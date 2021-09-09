@@ -1,0 +1,94 @@
+<!-- 方案二: html不超过一屏，聚焦时使用搜索预制页替换 -->
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <link href="./index.css" rel="stylesheet" />
+    <script src="../vue.js"></script>
+    <script src="../mock.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="input-container">
+        <div class="board-container">
+          <div v-show="!isFocus" class="input-board" @click.stop="inputTouchEnd"></div>
+          <input
+            ref="inputDom"
+            @blur="inputBlur"
+          />
+        </div>
+        
+      </div>
+      <div ref="goodsContainer" class="goodsesContainer" v-show="!isFocus">
+        <div
+          class="goodsItem"
+          v-for="(item, index) in goodsList"
+          :key="index" 
+        >
+          <h4>{{item.title}}</h4>
+          <p class="desc">{{item.desc}}</p>
+          <p class="time">{{item.time}}</p>
+        </div>
+      </div>
+      <div ref="goodsBoard" class="goodsBoard" v-show="isFocus">
+        <p>这是一块白板，替换掉了之前的商品列表</p>
+      </div>
+    </div>
+    <div
+      style="
+        position: fixed;
+        z-index: 10000;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        line-height: 40px;
+        bottom: 40px;
+        right: 20px;
+        font-size: 12px;
+        color: #666;
+        border: 1px solid #999;
+        border-radius: 50%;
+      "
+      onclick="window.history.back()"
+    >
+      返回
+    </div>
+  </body>
+  <script type="module">
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        goodsList: [],
+        isFocus: false,
+        topVal: 0
+      },
+      mounted() {
+        this.goodsList = window.longData
+      },
+      methods: {
+        inputTouchEnd () {
+          this.topVal = document.documentElement.scrollTop || document.body.scrollTop // 记录滚动值
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+          new Promise((resolve) => {
+            resolve(true)
+          })
+            .then(() => {
+              this.isFocus = true
+              this.$refs.inputDom.focus()
+            })
+        },
+        inputBlur () {
+          this.isFocus = false
+          new Promise((resolve) => {
+            resolve(true)
+          })
+            .then(() => {
+              document.documentElement.scrollTop = this.topVal
+              document.body.scrollTop  = this.topVal
+            })
+        }
+      }
+    })
+  </script>
+</html>
